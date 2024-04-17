@@ -1,0 +1,32 @@
+/* _________________HEADER____________________ */
+.header-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* height: 110px; */
+    background-color: #4BA598;
+    padding: 2rem 0;
+}
+/* _________________MAIN_CONTAINER____________________ */
+.container {
+    background-color: #F2F2F2;
+    padding: 5rem 0;
+}
+#location{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+}
+/* _________________FOOTER____________________ */
+.footer-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 90px;
+    background-color: #4BA598;
+}
