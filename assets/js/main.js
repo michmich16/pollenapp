@@ -113,47 +113,26 @@ function pollenDataScructure(data) {
     // console.log(data.hourly);
 
 
-    data.hourly.time.map((myTime, index) => {
-        let myHourData = {}
+    // data.hourly.time.map((myTime, index) => {
+    //     let myHourData = {}
 
-        myHourData.time = myTime
+    //     myHourData.time = myTime
 
-        myHourData.alder_pollen = data.hourly.alder_pollen[index]
-        myHourData.birch_pollen = data.hourly.birch_pollen[index]
+    //     myHourData.alder_pollen = data.hourly.alder_pollen[index]
+    //     myHourData.birch_pollen = data.hourly.birch_pollen[index]
+    //     myHourData.grass_pollen = data.hourly.grass_pollen[index]
+    //     myHourData.mugwort_pollen = data.hourly.mugwort_pollen[index]
+    //     myHourData.olive_pollen = data.hourly.olive_pollen[index]
+    //     myHourData.ragweed_pollen = data.hourly.ragweed_pollen[index]
 
-        myHourData.grass_pollen = data.hourly.grass_pollen[index]
-        myHourData.mugwort_pollen = data.hourly.mugwort_pollen[index]
-        myHourData.olive_pollen = data.hourly.olive_pollen[index]
-        myHourData.ragweed_pollen = data.hourly.ragweed_pollen[index]
 
+    //     // console.log("myHourData: " + myHourData);
+    //     myHourlyData.push(myHourData)
 
-        // console.log("myHourData: " + myHourData);
-        myHourlyData.push(myHourData)
-
-    })
+    // })
 
     // console.log(myHourlyData);
     myViewData.push(myHourlyData)
-
-
-
-
-
-    /*   let HourData = []
-      data.hourly.time.map((myTime, index) => {
-          let hourData = {}
-          hourData.time = myTime
-          hourData.alder_pollen = data.hourly.alder_pollen[index]
-          hourData.birch_pollen = data.hourly.birch_pollen[index]
-          hourData.grass_pollen = data.hourly.grass_pollen[index]
-          hourData.mugwort_pollen = data.hourly.mugwort_pollen[index]
-          hourData.olive_pollen = data.hourly.olive_pollen[index]
-          hourData.ragweed_pollen = data.hourly.ragweed_pollen[index]
-  
-          HourData.push(hourData)
-      })
-      myViewData.push(HourData)
-      //console.log(HourData); */
 
     BuildPollenView(myViewData)
 
@@ -174,12 +153,12 @@ function BuildPollenView(viewData) {
     let myCurrentData = viewData[0]
     // generate Card HTML for current values
     let myCurrentHTML = `<section id="currentValues"><h2>Pollental</h2><ul>
-                <li>El ${myCurrentData.alder_pollen}</li>
-                <li>Birk ${myCurrentData.birch_pollen}</li>
-                <li>Græs ${myCurrentData.grass_pollen}</li>
-                <li>Bynke ${myCurrentData.mugwort_pollen}</li>
-                 <li>Oliven ${myCurrentData.olive_pollen}</li>
-                   <li>Ambrosia ${myCurrentData.ragweed_pollen}</li>
+                <li>El ${myCurrentData.alder_pollen} p/m³</li>
+                <li>Birk ${myCurrentData.birch_pollen} p/m³</li>
+                <li>Græs ${myCurrentData.grass_pollen} p/m³</li>
+                <li>Bynke ${myCurrentData.mugwort_pollen} p/m³</li>
+                 <li>Oliven ${myCurrentData.olive_pollen} p/m³</li>
+                   <li>Ambrosia ${myCurrentData.ragweed_pollen} p/m³</li>
             </ul>
         </section>`
 
@@ -188,26 +167,26 @@ function BuildPollenView(viewData) {
 
     // build hours from HourData viewData[1]
 
-      let myHourViewHTML = '<section id="hours"><h2>time visning</h2>'
+    //   let myHourViewHTML = '<section id="hours"><h2>time visning</h2>'
  
-     let myHourdata = viewData[1]
+    //  let myHourdata = viewData[1]
  
-     myHourdata.map((myHour) => {
-         let myCurrentHTML = `<section class="hourcard"><h3>${myHour.time}</h3><ul>
-                 <li>El ${myHour.alder_pollen}</li>
-                 <li>Birk ${myHour.birch_pollen}</li>
-                 <li>Græs ${myHour.grass_pollen}</li>
-                 <li>Bynke ${myHour.mugwort_pollen}</li>
-                  <li>Oliven ${myHour.olive_pollen}</li>
-                    <li>Ambrosia ${myHour.ragweed_pollen}</li>
-             </ul>
-         </section>`
-         myHourViewHTML += myCurrentHTML
-     })
+    //  myHourdata.map((myHour) => {
+    //      let myCurrentHTML = `<section class="hourcard"><h3>${myHour.time}</h3><ul>
+    //              <li>El ${myHour.alder_pollen}</li>
+    //              <li>Birk ${myHour.birch_pollen}</li>
+    //              <li>Græs ${myHour.grass_pollen}</li>
+    //              <li>Bynke ${myHour.mugwort_pollen}</li>
+    //               <li>Oliven ${myHour.olive_pollen}</li>
+    //                 <li>Ambrosia ${myHour.ragweed_pollen}</li>
+    //          </ul>
+    //      </section>`
+    //      myHourViewHTML += myCurrentHTML
+    //  })
  
  
-     myHourViewHTML += '</section>'
-     myDisplayElement.innerHTML += myHourViewHTML 
+    //  myHourViewHTML += '</section>'
+    //  myDisplayElement.innerHTML += myHourViewHTML 
 }
 
 
