@@ -153,12 +153,12 @@ function BuildPollenView(viewData) {
     let myCurrentData = viewData[0]
     // generate Card HTML for current values
     let myCurrentHTML = `<section id="currentValues"><h2>Pollental</h2><ul>
-                <li>El ${myCurrentData.alder_pollen} p/m³</li>
-                <li>Birk ${myCurrentData.birch_pollen} p/m³</li>
-                <li>Græs ${myCurrentData.grass_pollen} p/m³</li>
-                <li>Bynke ${myCurrentData.mugwort_pollen} p/m³</li>
-                 <li>Oliven ${myCurrentData.olive_pollen} p/m³</li>
-                   <li>Ambrosia ${myCurrentData.ragweed_pollen} p/m³</li>
+                <div><li>El ${myCurrentData.alder_pollen} p/m³</li></div>
+                <div><li>Birk ${myCurrentData.birch_pollen} p/m³</li></div>
+                <div><li>Græs ${myCurrentData.grass_pollen} p/m³</li></div>
+                <div><li>Bynke ${myCurrentData.mugwort_pollen} p/m³</li></div>
+                <div><li>Oliven ${myCurrentData.olive_pollen} p/m³</li></div>
+                <div><li>Ambrosia ${myCurrentData.ragweed_pollen} p/m³</li></div>
             </ul>
         </section>`
 
@@ -168,9 +168,9 @@ function BuildPollenView(viewData) {
     // build hours from HourData viewData[1]
 
     //   let myHourViewHTML = '<section id="hours"><h2>time visning</h2>'
- 
+
     //  let myHourdata = viewData[1]
- 
+
     //  myHourdata.map((myHour) => {
     //      let myCurrentHTML = `<section class="hourcard"><h3>${myHour.time}</h3><ul>
     //              <li>El ${myHour.alder_pollen}</li>
@@ -183,8 +183,8 @@ function BuildPollenView(viewData) {
     //      </section>`
     //      myHourViewHTML += myCurrentHTML
     //  })
- 
- 
+
+
     //  myHourViewHTML += '</section>'
     //  myDisplayElement.innerHTML += myHourViewHTML 
 }

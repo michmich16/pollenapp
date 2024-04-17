@@ -20,6 +20,10 @@
     color: white;
     font-size: 32px;
 }
+
+#PollenData ul li{
+list-style: none;
+}
 /* _________________FOOTER____________________ */
 .footer-menu {
     position: fixed;
