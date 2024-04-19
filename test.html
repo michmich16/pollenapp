@@ -74,8 +74,8 @@
         <button id="mySetting"><i class="fa fa-cog"></i></button>
     </footer>
 
-    <script defer>
-        // write cool JS hwere!!
+    
+    <script>
 
         getLocation()
 
@@ -187,27 +187,6 @@
 
             let myHourlyData = []
 
-            // console.log(data.hourly);
-
-
-            // data.hourly.time.map((myTime, index) => {
-            //     let myHourData = {}
-
-            //     myHourData.time = myTime
-
-            //     myHourData.alder_pollen = data.hourly.alder_pollen[index]
-            //     myHourData.birch_pollen = data.hourly.birch_pollen[index]
-            //     myHourData.grass_pollen = data.hourly.grass_pollen[index]
-            //     myHourData.mugwort_pollen = data.hourly.mugwort_pollen[index]
-            //     myHourData.olive_pollen = data.hourly.olive_pollen[index]
-            //     myHourData.ragweed_pollen = data.hourly.ragweed_pollen[index]
-
-
-            //     // console.log("myHourData: " + myHourData);
-            //     myHourlyData.push(myHourData)
-
-            // })
-
             // console.log(myHourlyData);
             myViewData.push(myHourlyData)
 
@@ -241,29 +220,6 @@
 
             myDisplayElement.innerHTML = myCurrentHTML
 
-
-            // build hours from HourData viewData[1]
-
-            //   let myHourViewHTML = '<section id="hours"><h2>time visning</h2>'
-
-            //  let myHourdata = viewData[1]
-
-            //  myHourdata.map((myHour) => {
-            //      let myCurrentHTML = `<section class="hourcard"><h3>${myHour.time}</h3><ul>
-            //              <li>El ${myHour.alder_pollen}</li>
-            //              <li>Birk ${myHour.birch_pollen}</li>
-            //              <li>Græs ${myHour.grass_pollen}</li>
-            //              <li>Bynke ${myHour.mugwort_pollen}</li>
-            //               <li>Oliven ${myHour.olive_pollen}</li>
-            //                 <li>Ambrosia ${myHour.ragweed_pollen}</li>
-            //          </ul>
-            //      </section>`
-            //      myHourViewHTML += myCurrentHTML
-            //  })
-
-
-            //  myHourViewHTML += '</section>'
-            //  myDisplayElement.innerHTML += myHourViewHTML 
         }
 
 
