@@ -7,19 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const mySettingButton = document.getElementById('mySetting');
     mySettingButton.addEventListener('click', showToggleSwitches);
     const myHomeButton = document.getElementById('myHome');
-    myHomeButton.addEventListener('click', resetPage);
+    myHomeButton.addEventListener('click', retrieveDataFromLocalStorage);
 
     // Call getLocation when the page loads
     getLocation();
+
+    // Update data from API every 30 min (1.800.000 millisek)
+    setInterval(updateDataFromApi, 1800000);
 });
 
 function clearContainer() {
     const container = document.querySelector('.container');
     container.innerHTML = ''; // Clearing all child elements
-}
-
-function resetPage() {
-    location.reload(); // Reloads the page
 }
 
 function buildMap() {
@@ -88,7 +87,19 @@ function fetchLocationAndData(lat, lon) {
             return response.json();
         })
         .then(data => {
-            displayPollenData(data);
+            // Store only pollenData in local storage
+            const pollenData = {
+                current: {
+                    alder_pollen: data.current.alder_pollen,
+                    birch_pollen: data.current.birch_pollen,
+                    grass_pollen: data.current.grass_pollen,
+                    mugwort_pollen: data.current.mugwort_pollen,
+                    olive_pollen: data.current.olive_pollen,
+                    ragweed_pollen: data.current.ragweed_pollen
+                }
+            };
+            localStorage.setItem('PollenData', JSON.stringify(pollenData));
+            displayPollenData(pollenData);
         })
         .catch(error => {
             console.error('Error fetching pollution data:', error.message);
@@ -109,7 +120,15 @@ function displayPollenData(data) {
                 <li>Ambrosia ${currentData.ragweed_pollen} p/m³</li>
             </ul>
         </section>`;
-    document.getElementById('PollenData').innerHTML = pollenDataHtml;
+    let pollenDataSection = document.getElementById('PollenData');
+    if (!pollenDataSection) {
+        // If the section doesn't exist, create it
+        const container = document.querySelector('.container');
+        pollenDataSection = document.createElement('section');
+        pollenDataSection.id = 'PollenData';
+        container.appendChild(pollenDataSection);
+    }
+    pollenDataSection.innerHTML = pollenDataHtml;
 }
 
 function showToggleSwitches() {
@@ -153,4 +172,21 @@ function toggleSwitchChanged(event) {
     const isChecked = event.target.checked;
     // Do something when the toggle switch is changed
     console.log('Toggle switch changed:', isChecked);
+}
+
+function retrieveDataFromLocalStorage() {
+    clearContainer(); // Clear the container first
+    const storedData = localStorage.getItem('PollenData');
+    if (storedData) {
+        const parsedData = JSON.parse(storedData);
+        displayPollenData(parsedData);
+    } else {
+        console.error('No stored data available.');
+    }
+}
+
+function updateDataFromApi() {
+    // Fetch new data from API and update local storage
+    getLocation(); // This will trigger the entire process of fetching and updating
+    console.log('Data updated from API.');
 }
