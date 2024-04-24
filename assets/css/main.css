@@ -1,42 +1,109 @@
-/* _________________HEADER____________________ */
-.header-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    /* height: 110px; */
-    background-color: #4BA598;
-    padding: 2rem 0;
-}
-/* _________________MAIN_CONTAINER____________________ */
-.container {
-    background-color: #F2F2F2;
-    padding: 6rem 0;
-}
-#location{
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-size: 32px;
-}
+        /* _________________HEADER____________________ */
+        .header-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            /* height: 110px; */
+            background-color: #4BA598;
+            padding: 2rem 0;
+        }
 
-#PollenData ul li{
-list-style: none;
-}
-/* _________________FOOTER____________________ */
-.footer-menu {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 90px;
-    background-color: #4BA598;
-    display: flex;
-    justify-content: space-between;
-}
-.footer-menu button{
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 2rem;
-}
+        /* _________________MAIN_CONTAINER____________________ */
+        .container {
+            background-color: #F2F2F2;
+            padding: 6rem 0;
+            height: calc(100vh - 200px); /* Adjusted the height of the map container */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        #location {
+            display: flex;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+        }
+
+        #PollenData ul li {
+            list-style: none;
+        }
+
+        /* _________________MAP____________________ */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /* _________________TOGGLE SWITCH____________________ */
+        .toggle-container {
+            display: block;
+            justify-content: space-around;
+            grid-row: auto;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        .toggle-container label {
+            display: block;
+            margin-right: 30px;
+            font-size: 16px;
+        }
+
+        .toggle-container input[type="checkbox"] {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #ccc;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            border-radius: 50%;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        input[type="checkbox"]:checked + .toggle-slider {
+            background-color: #4BA598;
+        }
+
+        input[type="checkbox"]:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        /* _________________FOOTER____________________ */
+        .footer-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 90px;
+            background-color: #4BA598;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-menu button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 2rem;
+            background-color: #4BA598;
+            color: #F2F2F2;
+            border: none;
+        }
+
+        .footer-menu button i{
+            font-size: 30px;
+        }

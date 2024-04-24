@@ -50,6 +50,54 @@
             width: 100%;
         }
 
+        /* _________________TOGGLE SWITCH____________________ */
+        .toggle-container {
+            display: block;
+            justify-content: space-around;
+            grid-row: auto;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        .toggle-container label {
+            display: block;
+            margin-right: 30px;
+            font-size: 16px;
+        }
+
+        .toggle-container input[type="checkbox"] {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #ccc;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            border-radius: 50%;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        input[type="checkbox"]:checked + .toggle-slider {
+            background-color: #4BA598;
+        }
+
+        input[type="checkbox"]:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
         /* _________________FOOTER____________________ */
         .footer-menu {
             position: fixed;
@@ -66,6 +114,13 @@
         .footer-menu button {
             padding: 0.5rem 1rem;
             margin: 0.5rem 2rem;
+            background-color: #4BA598;
+            color: #F2F2F2;
+            border: none;
+        }
+
+        .footer-menu button i{
+            font-size: 30px;
         }
     </style>
 </head>
@@ -93,7 +148,7 @@
                 buildMap();
             });
             const mySettingButton = document.getElementById('mySetting');
-            mySettingButton.addEventListener('click', clearContainer);
+            mySettingButton.addEventListener('click', showToggleSwitches);
             const myHomeButton = document.getElementById('myHome');
             myHomeButton.addEventListener('click', resetPage);
 
@@ -198,6 +253,49 @@
                     </ul>
                 </section>`;
             document.getElementById('PollenData').innerHTML = pollenDataHtml;
+        }
+
+        function showToggleSwitches() {
+            const container = document.querySelector('.container');
+            container.innerHTML = ''; // Clear previous content
+
+            const toggleContainer = document.createElement('div');
+            toggleContainer.classList.add('toggle-container');
+
+            const toggleNames = [
+                'El',
+                'Birk',
+                'Græs',
+                'Bynke',
+                'Oliven',
+                'Ambrosia'
+            ];
+
+            toggleNames.forEach(name => {
+                const label = document.createElement('label');
+                label.textContent = name;
+
+                const toggleInput = document.createElement('input');
+                toggleInput.type = 'checkbox';
+                toggleInput.classList.add('toggle-input');
+                toggleInput.addEventListener('change', toggleSwitchChanged);
+
+                const toggleSlider = document.createElement('span');
+                toggleSlider.classList.add('toggle-slider');
+
+                label.appendChild(toggleInput);
+                label.appendChild(toggleSlider);
+
+                toggleContainer.appendChild(label);
+            });
+
+            container.appendChild(toggleContainer);
+        }
+
+        function toggleSwitchChanged(event) {
+            const isChecked = event.target.checked;
+            // Do something when the toggle switch is changed
+            console.log('Toggle switch changed:', isChecked);
         }
     </script>
 </body>
