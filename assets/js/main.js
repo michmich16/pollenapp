@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Call getLocation when the page loads
     getLocation();
 
-    // Update data from API every 30 min (1.800.000 millisek)
+    // opdateer data fra API hver 30 min (1.800.000 millisek)
     setInterval(updateDataFromApi, 1800000);
 });
 
 function clearContainer() {
     const container = document.querySelector('.container');
-    container.innerHTML = ''; // Clearing all child elements
+    container.innerHTML = ''; // fjerner alle child elements
 }
 
 function buildMap() {
@@ -87,7 +87,7 @@ function fetchLocationAndData(lat, lon) {
             return response.json();
         })
         .then(data => {
-            // Store only pollenData in local storage
+                // gemmer data i local storage
             const pollenData = {
                 current: {
                     alder_pollen: data.current.alder_pollen,
@@ -98,6 +98,7 @@ function fetchLocationAndData(lat, lon) {
                     ragweed_pollen: data.current.ragweed_pollen
                 }
             };
+            // setInterval.Item gemmer sender data til localStorage
             localStorage.setItem('PollenData', JSON.stringify(pollenData));
             displayPollenData(pollenData);
         })
@@ -122,7 +123,7 @@ function displayPollenData(data) {
         </section>`;
     let pollenDataSection = document.getElementById('PollenData');
     if (!pollenDataSection) {
-        // If the section doesn't exist, create it
+        // ! check om sectionen er eksister ellers laver en ny en
         const container = document.querySelector('.container');
         pollenDataSection = document.createElement('section');
         pollenDataSection.id = 'PollenData';
@@ -133,7 +134,7 @@ function displayPollenData(data) {
 
 function showToggleSwitches() {
     const container = document.querySelector('.container');
-    container.innerHTML = ''; // Clear previous content
+    container.innerHTML = ''; // fjerner child elements
     const toggleContainer = document.createElement('div');
     toggleContainer.classList.add('toggle-container');
 
@@ -169,7 +170,7 @@ function showToggleSwitches() {
 
 function toggleSwitchChanged(event) {
     const isChecked = event.target.checked;
-    // Do something when the toggle switch is changed
+    // gør noget med toggle switch. ikke færdig
     console.log('Toggle switch changed:', isChecked);
 }
 
