@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const myMapButton = document.getElementById('myMap');
-    myMapButton.addEventListener('click', function() {
+    myMapButton.addEventListener('click', function () {
         clearContainer();
         buildMap();
     });
@@ -79,7 +79,8 @@ function fetchLocationAndData(lat, lon) {
         });
 
     const timeZone = "Europe%2FBerlin";
-    fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=${timeZone}&forecast_days=1`)
+    fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,dust,ammonia,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,dust,ammonia,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=${timeZone}&forecast_days=1`)
+
         .then(response => {
             if (!response.ok) {
                 throw new Error('Pollution API request failed');
@@ -87,9 +88,16 @@ function fetchLocationAndData(lat, lon) {
             return response.json();
         })
         .then(data => {
-                // gemmer data i local storage
+            // gemmer data i local storage
             const pollenData = {
                 current: {
+                    pm10: data.current.pm10,
+                    pm2_5: data.current.pm2_5,
+                    carbon_monoxide: data.current.carbon_monoxide,
+                    nitrogen_dioxide: data.current.nitrogen_dioxide,
+                    sulphur_dioxide: data.current.sulphur_dioxide,
+                    dust: data.current.dust,
+                    ammonia: data.current.ammonia,
                     alder_pollen: data.current.alder_pollen,
                     birch_pollen: data.current.birch_pollen,
                     grass_pollen: data.current.grass_pollen,
@@ -107,18 +115,26 @@ function fetchLocationAndData(lat, lon) {
         });
 }
 
+// view code - display data til forsiden
 function displayPollenData(data) {
     const currentData = data.current;
     const pollenDataHtml = `
         <section id="currentValues">
             <h2>Pollental</h2>
             <ul>
-                <li>El ${currentData.alder_pollen} p/m³</li>
-                <li>Birk ${currentData.birch_pollen} p/m³</li>
-                <li>Græs ${currentData.grass_pollen} p/m³</li>
-                <li>Bynke ${currentData.mugwort_pollen} p/m³</li>
-                <li>Oliven ${currentData.olive_pollen} p/m³</li>
-                <li>Ambrosia ${currentData.ragweed_pollen} p/m³</li>
+            <li>PM10 ${currentData.pm10} μg/m³</li>
+            <li>PM2.5 ${currentData.pm2_5} μg/m³</li>
+            <li>Carbon Monoxide ${currentData.carbon_monoxide} μg/m³</li>
+            <li>Nitrogen Dioxide ${currentData.nitrogen_dioxide} μg/m³</li>
+            <li>Sulphur Dioxide SO2 ${currentData.sulphur_dioxide} μg/m³</li>
+            <li>Dust ${currentData.dust} μg/m³</li>
+            <li>Ammonia NH3 ${currentData.ammonia} μg/m³</li>
+            <li>El ${currentData.alder_pollen} p/m³</li>
+            <li>Birk ${currentData.birch_pollen} p/m³</li>
+            <li>Græs ${currentData.grass_pollen} p/m³</li>
+            <li>Bynke ${currentData.mugwort_pollen} p/m³</li>                
+            <li>Oliven ${currentData.olive_pollen} p/m³</li>
+            <li>Ambrosia ${currentData.ragweed_pollen} p/m³</li>
             </ul>
         </section>`;
     let pollenDataSection = document.getElementById('PollenData');
