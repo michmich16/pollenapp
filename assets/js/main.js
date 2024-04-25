@@ -21,6 +21,9 @@ function clearContainer() {
     container.innerHTML = ''; // fjerner alle child elements
 }
 
+// gps kort som chat gpt lavet
+// build en kort fra leaflet.js library
+
 function buildMap() {
     const container = document.querySelector('.container');
     container.innerHTML = '<div id="map"></div>';
@@ -36,7 +39,7 @@ function buildMap() {
     function onLocationFound(e) {
         const radius = e.accuracy / 2;
         L.marker(e.latlng).addTo(map)
-            .bindPopup(`You are within ${radius} meters from this point`).openPopup();
+
         L.circle(e.latlng, radius).addTo(map);
     }
 
