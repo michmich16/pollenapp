@@ -134,7 +134,6 @@ function displayPollenData(data) {
 function showToggleSwitches() {
     const container = document.querySelector('.container');
     container.innerHTML = ''; // Clear previous content
-
     const toggleContainer = document.createElement('div');
     toggleContainer.classList.add('toggle-container');
 
