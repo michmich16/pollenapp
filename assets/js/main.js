@@ -134,7 +134,7 @@ function displayPollenData(data) {
 
 function showToggleSwitches() {
     const container = document.querySelector('.container');
-    container.innerHTML = ''; // fjerner child elements
+    container.innerHTML = '' + '<h2>Vælg dine allergier</h2>'; // fjerner child elements
     const toggleContainer = document.createElement('div');
     toggleContainer.classList.add('toggle-container');
 
